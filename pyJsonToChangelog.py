@@ -14,13 +14,17 @@ listName = input()
 for lists in data['lists']:
     #print(lists['name'])
     if(listName == lists['name']):
-        print('MATCH!!!')
+        print('***List has been found***')
         listId = lists['id']
 time.sleep(0.5)
 print('list id is:' + listId)
 time.sleep(0.5)
+print('-------------------The Changelog Is---------------------')
 for cards in data['cards']:
     if(listId == cards['idList']):
-        print(cards['name'])
-#print(data['lists'][0]['id'])
-#print(data['cards'][2]['name'])
+        changeTxt = '* '+ cards['name']
+        print(changeTxt)
+
+print('--------------------------------------------------------')
+print('Press a key to close')
+key = input()
