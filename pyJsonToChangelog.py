@@ -1,5 +1,7 @@
 import json
 import time
+import sys
+
 print("What is the json filename?")
 file = input()
 file_directory = file +'.json'
@@ -16,6 +18,9 @@ for lists in data['lists']:
     if(listName == lists['name']):
         print('***List has been found***')
         listId = lists['id']
+    # else:
+    #     sys.exit("ERROR: Done 13-02-2019COULD NOT FIND LIST....")
+    #     break
 time.sleep(0.5)
 print('list id is:' + listId)
 time.sleep(0.5)
@@ -24,6 +29,9 @@ for cards in data['cards']:
     if(listId == cards['idList']):
         changeTxt = '* '+ cards['name']
         print(changeTxt)
+        time.sleep(0.1)
+
+
 
 print('--------------------------------------------------------')
 print('Press a key to close')
