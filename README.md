@@ -1,4 +1,4 @@
-# pyChangelogFromTrello
+# pyExportTrelloList
 
 ## What it does
 This creates a changelog from a PRIVATE Trello board list through the API. Just enter your list name et voila!
