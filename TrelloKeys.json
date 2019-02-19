@@ -1,0 +1,6 @@
+{
+      "key": "PUT IN YOUR TRELLO API KEY HERE",
+      "token": "PUT IN YOUR TRELLO API TOKEN HERE",
+      "boardId": "PUT IN THE TRELLO BOARD ID HERE"
+
+}

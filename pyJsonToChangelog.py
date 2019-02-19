@@ -1,22 +1,35 @@
+
+import urllib
 import json
 import time
 import sys
+from urllib.request import urlopen
+
 
 #Check for py plugins
 import subprocess
 
-#Check for py plugins
 reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
-print("What is the json filename?")
-file = input()
-file_directory = file +'.json'
-time.sleep(0.5)
-print(file_directory + " was loaded...")
-json_data=open(file_directory, encoding="utf8").read()
-data = json.loads(json_data)
-time.sleep(0.5)
+api_json_data=open('TrelloKeys.json', encoding="utf8").read()
+keys = json.loads(api_json_data)
+
+#get API keys out of the TrelloKeys.json
+api_key = keys['key']
+api_token = keys['token']
+api_boardId = keys['boardId']
+
+boardURL = 'https://api.trello.com/1/boards/' + api_boardId + '?key=' + \
+            api_key + '&token=' + api_token + '&fields=all&cards=all&card_fields=all&pluginData=true&card_pluginData=true&lists=all'
+response = urllib.request.urlopen(boardURL)
+jsonFile=response.read()
+data = json.loads(jsonFile)
+boardName = data['name']
+print('***********************')
+print(boardName)
+print('***********************')
+
 print("What is the name of the list you want to export?")
 listName = input()
 #print(data['lists'])
@@ -39,9 +52,8 @@ for cards in data['cards']:
         toPasteTxt += changeTxt + '\n'
         print(changeTxt)
         time.sleep(0.1)
-
-
 print('--------------------------------------------------------')
+
 
 #see if pyperclip is in installed_packages
 if 'pyperclip' in installed_packages:
