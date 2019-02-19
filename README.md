@@ -1,7 +1,7 @@
 # pyExportTrelloList
 
 ## What it does
-This creates a changelog from a PRIVATE Trello board list through the API. Just enter your list name et voila!
+This creates a changelog from a PRIVATE Trello board list through the API. Just enter your list name, et voila!
 You should install pyperclip (pip install pyperclip) to have the changelog automatically pasted in your clipboard.
 
 ## How to use it
