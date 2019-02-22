@@ -13,8 +13,13 @@ reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
 #Open the json file where the api keys are stored. 
-with open('TrelloKeys.json', encoding="utf8") as f:
-    keys = json.load(f)
+#check if file exists
+try:
+	with open('TrelloKeys.json', encoding="utf8") as f:
+		keys = json.load(f)
+except FileNotFoundError:
+	print('TrelloKeys.json was not found.')
+	input('Press ENTER to exit')
 
 
 #get API keys out of the TrelloKeys.json
@@ -65,5 +70,4 @@ if 'pyperclip' in installed_packages:
 
 
 
-print('Press a key to close')
-key = input()
+input('Press ENTER to exit')
