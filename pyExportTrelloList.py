@@ -12,8 +12,10 @@ import subprocess
 reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
-api_json_data=open('TrelloKeys.json', encoding="utf8").read()
-keys = json.loads(api_json_data)
+#Open the json file where the api keys are stored. 
+with open('TrelloKeys.json', encoding="utf8") as f:
+    keys = json.load(f)
+
 
 #get API keys out of the TrelloKeys.json
 api_key = keys['key']
