@@ -12,7 +12,7 @@ import subprocess
 reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
 installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
 
-#Open the json file where the api keys are stored. 
+#Open the json file where the api keys are stored.
 #check if file exists
 try:
 	with open('TrelloKeys.json', encoding="utf8") as f:
@@ -29,7 +29,10 @@ api_boardId = keys['boardId']
 
 boardURL = 'https://api.trello.com/1/boards/' + api_boardId + '?key=' + \
             api_key + '&token=' + api_token + '&fields=all&cards=all&card_fields=all&pluginData=true&card_pluginData=true&lists=all'
-response = urllib.request.urlopen(boardURL)
+try:
+	response = urllib.request.urlopen(boardURL)
+except:
+	input("Could not access Trello API. Please check your keys in TrelloKeys.json...")
 jsonFile=response.read()
 data = json.loads(jsonFile)
 boardName = data['name']
